@@ -21,7 +21,7 @@ namespace VaccinationCampaignUI.Models
         public string AdressMedInst { get; set; }
 
         [Required]
-        public int AppealId { get; set; }
+        public int? AppealId { get; set; }
 
         [ForeignKey("AppealId")]
         public Appeal Appeall { get; set; }

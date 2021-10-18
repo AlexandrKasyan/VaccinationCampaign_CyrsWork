@@ -27,7 +27,7 @@ namespace VaccinationCampaignUI
         {
             var connectionString = Configuration.GetConnectionString("ConnectionString");
 
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("asdf"));
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
             services.AddControllersWithViews();
         }

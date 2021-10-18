@@ -29,7 +29,7 @@ namespace VaccinationCampaignUI.Models
         public string Passport { get; set; }
 
         [Required]
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
 
         [ForeignKey("AddressId")]
         public Address Adress { get; set; }

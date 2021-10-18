@@ -10,8 +10,8 @@ using VaccinationCampaignUI.Data;
 namespace VaccinationCampaignUI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210921163739_AddTables")]
-    partial class AddTables
+    [Migration("20211006054932_last")]
+    partial class last
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,7 +76,8 @@ namespace VaccinationCampaignUI.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<int>("PatientId")
+                    b.Property<int?>("PatientId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Recommendation")
@@ -123,7 +124,8 @@ namespace VaccinationCampaignUI.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.Property<int>("AppealId")
+                    b.Property<int?>("AppealId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("NameMedInst")
@@ -145,7 +147,8 @@ namespace VaccinationCampaignUI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -183,7 +186,8 @@ namespace VaccinationCampaignUI.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MedicalInsId")
+                    b.Property<int?>("MedicalInsId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("NamberDose")
@@ -194,13 +198,17 @@ namespace VaccinationCampaignUI.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<int>("PatientId")
+                    b.Property<int?>("PatientId")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("VaccineId")
+                    b.Property<int?>("VaccineId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicalInsId");
 
                     b.HasIndex("PatientId");
 
@@ -221,7 +229,8 @@ namespace VaccinationCampaignUI.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<int>("DiseaseId")
+                    b.Property<int?>("DiseaseId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<double>("Dose")
@@ -274,15 +283,15 @@ namespace VaccinationCampaignUI.Migrations
 
             modelBuilder.Entity("VaccinationCampaignUI.Models.Vaccination", b =>
                 {
-                    b.HasOne("VaccinationCampaignUI.Models.Patient", "Patients")
+                    b.HasOne("VaccinationCampaignUI.Models.MedicalInstitution", "Institution")
                         .WithMany()
-                        .HasForeignKey("PatientId")
+                        .HasForeignKey("MedicalInsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VaccinationCampaignUI.Models.MedicalInstitution", "Institution")
+                    b.HasOne("VaccinationCampaignUI.Models.Patient", "Patients")
                         .WithMany()
-                        .HasForeignKey("VaccineId")
+                        .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

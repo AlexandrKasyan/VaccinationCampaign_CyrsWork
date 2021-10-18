@@ -5,27 +5,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using VaccinationCampaignUI.Data;
 using VaccinationCampaignUI.Models;
 
 namespace VaccinationCampaignUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationContext _context;
+        public HomeController(ApplicationContext context)
         {
-            _logger = logger;
+            _context = context;
         }
+
 
         public IActionResult Index()
         {
-            return View();
+            return View(_context.Addresses.ToList());
         }
 
-        public IActionResult Privacy()
+        public IActionResult Diseases()
         {
-            return View();
+            return View(_context.Diseases.ToList());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

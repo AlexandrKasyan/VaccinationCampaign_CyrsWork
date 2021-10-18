@@ -24,23 +24,21 @@ namespace VaccinationCampaignUI.Models
         public int NamberDose { get; set; }
 
         [Required]
-        public int PatientId { get; set; }
+        public int? PatientId { get; set; }
 
         [ForeignKey("PatientId")]
         public Patient Patients { get; set; }
 
         [Required]
-        public int VaccineId { get; set; }
+        public int? VaccineId { get; set; }
 
         [ForeignKey("VaccineId")]
         public Vaccine VaccineN { get; set; }
 
         [Required]
-        public int MedicalInsId { get; set; }
+        public int? MedicalInsId { get; set; }
 
-        [ForeignKey("VaccineId")]
+        [ForeignKey("MedicalInsId")]
         public MedicalInstitution Institution { get; set; }
-
-
     }
 }

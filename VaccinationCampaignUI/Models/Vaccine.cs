@@ -24,7 +24,7 @@ namespace VaccinationCampaignUI.Models
         public string Manufacturer { get; set; }
 
         [Required]
-        public int DiseaseId { get; set; }
+        public int? DiseaseId { get; set; }
 
         [ForeignKey("DiseaseId")]
         public Disease Diseases { get; set; }

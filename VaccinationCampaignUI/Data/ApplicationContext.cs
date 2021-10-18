@@ -20,18 +20,19 @@ namespace VaccinationCampaignUI.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server = COMPUTER; Database = VaccineDB; Trusted_Connection = True;");
+            optionsBuilder.UseSqlServer(@"Server = COMPUTER; Database = VaccineCompanyKurs; Trusted_Connection = True;");
         }
 
+        public DbSet<Vaccination> Vaccinations { get; set; }
+
         public DbSet<Address> Addresses { get; set; }
-        
+
         public DbSet<Patient> Patients { get; set; }
         public DbSet<MedicalInstitution> Institution { get; set; }
         public DbSet<Appeal> Appeals { get; set; }
         public DbSet<Disease> Diseases { get; set; }
-        public DbSet<Vaccination> Vaccinations { get; set; }
         public DbSet<Vaccine> Vaccines { get; set; }
-        
+
 
     }
 }

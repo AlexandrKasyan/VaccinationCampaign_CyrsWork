@@ -29,7 +29,7 @@ namespace VaccinationCampaignUI.Models
 
 
         [Required]
-        public int PatientId { get; set; }
+        public int? PatientId { get; set; }
 
         [ForeignKey("PatientId")]
         public Patient Patients { get; set; }

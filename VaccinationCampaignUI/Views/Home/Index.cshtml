@@ -1,8 +1,32 @@
-﻿@{
+﻿@model IEnumerable<VaccinationCampaignUI.Models.Address>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<body>
+
+    <a asp-action="Diseases">Diseases</a>
+
+    <table>
+        <tr>
+            <td>Страна</td>
+            <td>Область</td>
+            <td>Город</td>
+            <td>Дом</td>
+            <td>Квартира</td>
+            <td></td>
+        </tr>
+        @foreach (var address in Model)
+        {
+        <tr>
+            <td>@address.Coutry</td>
+            <td>@address.Region</td>
+            <td>@address.Locality</td>
+            <td>@address.Hous</td>
+            <td>@address.Flat</td>
+        </tr>
+        }
+    </table>
+</body>

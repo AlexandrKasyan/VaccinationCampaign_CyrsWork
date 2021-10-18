@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VaccinationCampaignUI.Migrations
 {
-    public partial class AddTables : Migration
+    public partial class last : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,7 +58,7 @@ namespace VaccinationCampaignUI.Migrations
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,7 +80,7 @@ namespace VaccinationCampaignUI.Migrations
                         column: x => x.DiseaseId,
                         principalTable: "Diseases",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,7 +103,7 @@ namespace VaccinationCampaignUI.Migrations
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,7 +124,7 @@ namespace VaccinationCampaignUI.Migrations
                         column: x => x.AppealId,
                         principalTable: "Appeals",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -144,8 +144,8 @@ namespace VaccinationCampaignUI.Migrations
                 {
                     table.PrimaryKey("PK_Vaccinations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vaccinations_Institution_VaccineId",
-                        column: x => x.VaccineId,
+                        name: "FK_Vaccinations_Institution_MedicalInsId",
+                        column: x => x.MedicalInsId,
                         principalTable: "Institution",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
@@ -177,6 +177,11 @@ namespace VaccinationCampaignUI.Migrations
                 name: "IX_Patients_AddressId",
                 table: "Patients",
                 column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vaccinations_MedicalInsId",
+                table: "Vaccinations",
+                column: "MedicalInsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vaccinations_PatientId",
