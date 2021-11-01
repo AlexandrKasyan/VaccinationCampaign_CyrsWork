@@ -1,0 +1,30 @@
+﻿@model VaccinationCampaignUI.Models.Address;
+
+<form asp-action="Edit" method="post">
+    <label>Введите страну</label>
+    <br />
+    <input type="text" name="coutry" value="@Model.Coutry" />
+    <br />
+
+    <label>Введите область</label>
+    <br />
+    <input type="text" name="region" value="@Model.Region" />
+    <br />
+
+    <label>Введите улицу</label>
+    <br />
+    <input type="text" name="locality" value="@Model.Locality" />
+    <br />
+
+    <label>Введите дом </label>
+    <br />
+    <input type="text" name="hous" value="@Model.Hous" />
+    <br />
+
+    <label>Квартиру</label>
+    <br />
+    <input type="number" name="flat" value="@Model.Flat" />
+    <br />
+
+    <input type="submit" value="Create" />
+</form>

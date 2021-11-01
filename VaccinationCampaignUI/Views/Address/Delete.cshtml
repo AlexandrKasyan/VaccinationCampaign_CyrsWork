@@ -1,0 +1,11 @@
+﻿@model VaccinationCampaignUI.Models.Address;
+
+<form asp-controller="Address" asp-action="delete" method="post">
+    <label>Введите id</label>
+    <br />
+    <input type="number" name="id" value="@Model.Id" />
+    <input type="submit" value="Delete" />
+    <br />
+
+
+</form>
