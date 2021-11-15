@@ -1,0 +1,35 @@
+﻿@model VaccinationCampaignUI.Models.Patient;
+
+<form asp-action="Edit" method="post">
+    <label>Имя</label>
+    <br />
+    <input type="text" name="name" value="" />
+    <br />
+
+    <label>Фамилия </label>
+    <br />
+    <input type="text" name="lastName" value="" />
+    <br />
+
+    <label>Пол </label>
+    <p>
+        <select name="sex">
+            <option selected="selected">Выберите пол</option>
+            <option value="false">Женский</option>
+            <option value="true">Мужской</option>
+        </select>
+    </p>
+    <br />
+
+    <label>Паспорт</label>
+    <br />
+    <input type="text" name="passport" value="" />
+    <br />
+
+    <label>адресId</label>
+    <br />
+    <input type="number" name="addressId" value="" />
+    <br />
+
+    <input type="submit" value="Edit" />
+</form>

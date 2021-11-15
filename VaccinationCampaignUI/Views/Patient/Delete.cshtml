@@ -1,0 +1,11 @@
+﻿@model VaccinationCampaignUI.Models.Patient;
+
+<form method="post">
+    <label>Введите id</label>
+    <br />
+    <input type="number" name="id" value="@Model.Id" />
+    <input type="submit"  asp-controller="Patient" asp-action="Delete" asp-route-id="2" value="Delete" />
+    <br />
+
+
+</form>

@@ -21,8 +21,8 @@
             <td>@address.Flat</td>
             
             <td>
-                <form asp-contrller="Address" method="post">
-                    <input asp-action="Delete" type="submit" name="Id" asp-route-id="@address.Id" value="Delete" />
+                <form method="post">
+                    <input asp-action="Delete"asp-controller="Address" type="submit" name="Id" asp-route-id="@address.Id" value="Delete" />
                 </form>
                 <form method="get">
                     <input asp-action="Edit" type="submit" name="Id" asp-route-id="@address.Id" value="Edit" />

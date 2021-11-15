@@ -1,0 +1,28 @@
+﻿@model VaccinationCampaignUI.Models.Appeal;
+
+<form method="post">
+    <label>id пициента</label>
+    <br />
+    <input type="text" name="PatientId" value="" />
+    <br />
+
+    <label>Описание</label>
+    <br />
+    <input type="text" name="Description" value="" />
+    <br />
+
+    <label>Рекомендации</label>
+    <br />
+    <input type="text" name="Recommendation" value="" />
+    <br />
+
+    <label>Врач</label>
+    <br />
+    <input type="text" name="Doctor" value="" />
+    <br />
+    <label for="localdate">Дата и время: </label>
+    <input type="datetime-local" name="Data" value="" />
+    <br />
+
+    <input type="submit" asp-action="Edit" asp-controller="Appeal" value="Edit" />
+</form>
