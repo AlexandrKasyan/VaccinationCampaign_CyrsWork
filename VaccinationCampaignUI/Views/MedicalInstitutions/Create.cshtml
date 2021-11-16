@@ -1,0 +1,15 @@
+﻿@model VaccinationCampaignUI.Models.MedicalInstitution;
+
+<form method="post">
+    <label>idболезни</label>
+    <input type="text" name="NameMedInst" value="" />
+    <br />
+    <label>Описание</label>
+    <input type="text" name="AdressMedInst" value="" />
+    <br />
+    <label>Доза</label>
+    <input type="text" name="AppealId" value="" />
+    <br />
+
+    <input type="submit" asp-action="Create" asp-controller="MedicalInstitution" value="Create" />
+</form>

@@ -3,25 +3,25 @@
 <form method="post">
     <label>id пициента</label>
     <br />
-    <input type="text" name="PatientId" value="" />
+    <input type="text" name="PatientId" value="@Model.PatientId" />
     <br />
 
     <label>Описание</label>
     <br />
-    <input type="text" name="Description" value="" />
+    <input type="text" name="Description" value="@Model.Description" />
     <br />
 
     <label>Рекомендации</label>
     <br />
-    <input type="text" name="Recommendation" value="" />
+    <input type="text" name="Recommendation" value="@Model.Recommendation" />
     <br />
 
     <label>Врач</label>
     <br />
-    <input type="text" name="Doctor" value="" />
+    <input type="text" name="Doctor" value="@Model.Doctor" />
     <br />
     <label for="localdate">Дата и время: </label>
-    <input type="datetime-local" name="Data" value="" />
+    <input type="datetime-local" name="Data" value="@Model.Data" />
     <br />
 
     <input type="submit" asp-action="Edit" asp-controller="Appeal" value="Edit" />

@@ -3,12 +3,12 @@
 <form asp-action="Edit" method="post">
     <label>Имя</label>
     <br />
-    <input type="text" name="name" value="" />
+    <input type="text" name="name" value="@Model.Name" />
     <br />
 
     <label>Фамилия </label>
     <br />
-    <input type="text" name="lastName" value="" />
+    <input type="text" name="lastName" value="@Model.Name" />
     <br />
 
     <label>Пол </label>
@@ -23,12 +23,12 @@
 
     <label>Паспорт</label>
     <br />
-    <input type="text" name="passport" value="" />
+    <input type="text" name="passport" value="@Model.Passport" />
     <br />
 
     <label>адресId</label>
     <br />
-    <input type="number" name="addressId" value="" />
+    <input type="number" name="addressId" value="@Model.AddressId" />
     <br />
 
     <input type="submit" value="Edit" />

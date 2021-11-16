@@ -1,0 +1,22 @@
+﻿@model VaccinationCampaignUI.Models.Vaccination;
+
+<form method="post">
+    <label>Название вакцыны</label>
+    <input type="text" name="NameVaccine" value="" />
+    <br />
+    <label>Дата</label>
+    <input type="text" name="Date" value="" />
+    <br />
+    <label>Номер дозы</label>
+    <input type="text" name="VaccineId" value="" />
+    <br />
+    <label>Пациент</label>
+    <input type="text" name="Manufacturer" value="" />
+    <br />
+
+    <label>Мединститут</label>
+    <input type="text" name="Manufacturer" value="" />
+    <br />
+
+    <input type="submit" asp-action="Create" asp-controller="Vaccination" value="Create" />
+</form>

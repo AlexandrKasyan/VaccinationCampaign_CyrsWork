@@ -1,34 +1,75 @@
-﻿@model IEnumerable<VaccinationCampaignUI.Models.Patient>;
+﻿@model IEnumerable<VaccinationCampaignUI.Models.Patient>
 
-<table>
-    <tr>
-        <td>id</td>
-        <td>Имя</td>
-        <td>Фамилия</td>
-        <td>пол</td>
-        <td>Паспорт</td>
-        <td>addressID</td>
-        <td></td>
-    </tr>
-    @foreach (var patient in Model)
-    {
+@{
+    ViewData["Title"] = "Patient";
+}
+
+<h1>Пациенты</h1>
+
+<p>
+    <a asp-action="Create">Добавить</a>
+</p>
+<table class="table">
+    <thead>
         <tr>
-            <td>@patient.Id</td>
-            <td>@patient.Name</td>
-            <td>@patient.LastName</td>
-            <td>@patient.Sex</td>
-            <td>@patient.Passport.ToString()</td>
-            <td>@patient.AddressId</td>
-
-            <td>
-                <form method="post">
-                    <input asp-action="Delete" asp-controller="Patient" type="submit" asp-route-id="@patient.Id" value="Delete" />
-                </form>
-                <form method="get">
-                    <input asp-action="Edit" type="submit" name="Id" asp-route-id="@patient.Id" value="Edit" />
-                </form>
-            </td>
+            <th>
+                Имя
+            </th>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                Пол
+            </th>
+            <th>
+                Адрес
+            </th>
+            <th>
+                Паспорт
+            </th>
+            <th></th>
+            <th></th>
         </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                @if (item.Sex)
+                {
+                    <td>
+                        Мужской
+                    </td>
+                }
+                @if (!item.Sex)
+                {
+                    <td>
+                        Женский
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Passport)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                </td>
 
-    }
+                <td>
+                    <form method="post">
+                        <input asp-action="Delete" asp-controller="Patient" type="submit" asp-route-id="@item.Id" value="Удалить">
+                    </form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

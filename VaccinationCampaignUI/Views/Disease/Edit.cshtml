@@ -1,12 +1,11 @@
 ﻿@model VaccinationCampaignUI.Models.Disease;
 
 <form method="post">
-    <label>Описание</label>
+    <label>Код</label>
+    <input type="text" name="Code" value="@Model.Code" />
     <br />
-    <input type="text" name="Code" value="" />
-    <br />
-    <label>Описание</label>
-    <input type="text" name="NameDis" value="" />
+    <label>Название болезни</label>
+    <input type="text" name="NameDis" value="@Model.NameDis" />
     <br />
 
     <input type="submit" asp-action="Edit" asp-controller="Disease" value="Edit" />

@@ -19,9 +19,6 @@ namespace VaccinationCampaignUI.Models
         public DateTime Date { get; set; }
 
         [Required]
-        public int NamberDose { get; set; }
-
-        [Required]
         public int? PatientId { get; set; }
 
         [ForeignKey("PatientId")]

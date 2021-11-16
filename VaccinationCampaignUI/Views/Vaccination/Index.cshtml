@@ -1,0 +1,65 @@
+﻿@model IEnumerable<VaccinationCampaignUI.Models.Vaccination>
+
+@{
+    ViewData["Title"] = "Vaccination";
+}
+
+<h1>Вакцинации</h1>
+
+<p>
+    <a asp-action="Create">Добавить</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Название вакцины
+            </th>
+            <th>
+                Дата
+            </th>
+            <th>
+                Номер дозы
+            </th>
+            <th>
+                Пациент
+            </th>
+            <th>
+                Мединститут
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameVaccine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VaccineId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicalInsId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                </td>
+                <td>
+                    <form method="post">
+                        <input asp-action="Delete" asp-controller="Vaccination" type="submit" asp-route-id="@item.Id" value="Удалить">
+                    </form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
