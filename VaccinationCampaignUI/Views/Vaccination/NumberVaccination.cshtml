@@ -1,0 +1,17 @@
+﻿@model VaccinationCampaignUI.ViewModels.NumberVaccinationViewModel;
+
+@{
+    ViewData["Title"] = "NumberVaccinationViewModel";
+}
+
+<h1>Вакцинации</h1>
+
+
+<form method="get">
+
+    <select name="cityId" asp-items="@(new SelectList(Model.Cities, "Id", "Name"))"></select>
+    <select name="diseaseId" asp-items="@(new SelectList(Model.Diseases, "Id", "Name"))"></select>
+    <input asp-action="NumberVaccination" asp-controller="Vaccination" type="submit" value="Показать">
+</form>
+
+<p>@Model.Count</p>
