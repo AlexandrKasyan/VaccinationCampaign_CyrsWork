@@ -29,6 +29,7 @@
             </th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -54,13 +55,16 @@
                     </td>
                 }
                 <td>
-                    @Html.DisplayFor(modelItem => item.AddressId)
+                    @Html.DisplayFor(modelItem => item.Adress.Region)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Passport)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                </td>
+                <td>
+                    <a asp-action="FindPatient" asp-route-id="@item.Id">Прививки</a>
                 </td>
 
                 <td>

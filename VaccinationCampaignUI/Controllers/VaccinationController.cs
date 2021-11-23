@@ -16,7 +16,7 @@ namespace VaccinationCampaignUI.Controllers
         }
         public IActionResult Index()
         {
-            var vaccinations = _context.Vaccinations.AsEnumerable();
+            var vaccinations = _context.Vaccinations.Include(x => x.Institution).Include(x => x.Patients).AsEnumerable();
             return View(vaccinations);
         }
 

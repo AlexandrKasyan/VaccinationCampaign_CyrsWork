@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VaccinationCampaignUI.Data;
 using VaccinationCampaignUI.Models;
+using VaccinationCampaignUI.ViewModels;
 
 namespace VaccinationCampaignUI.Controllers
 {
@@ -17,7 +18,7 @@ namespace VaccinationCampaignUI.Controllers
         // GET: PatientController
         public IActionResult Index()
         {
-            var patiets = _context.Patients.AsEnumerable();
+            var patiets = _context.Patients.Include(x => x.Adress).AsEnumerable();
             return View(patiets);
         }
 
@@ -71,6 +72,20 @@ namespace VaccinationCampaignUI.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> FindPatient(int id)
+        {
+            var vaccination = await Task.Run(() => _context.Vaccinations.Include(x => x.Institution).Where(x => x.PatientId == id));
+            var patient = await _context.Patients.FirstOrDefaultAsync(x => x.Id == id);
+            var model = new PatientVaccinations
+            {
+                Name = patient.Name,
+                LastName = patient.LastName,
+                Vaccinations = vaccination
+            };
+            
+            return View(model);
         }
     }
 }
