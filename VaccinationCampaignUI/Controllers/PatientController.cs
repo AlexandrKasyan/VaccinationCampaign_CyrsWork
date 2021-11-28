@@ -49,14 +49,36 @@ namespace VaccinationCampaignUI.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var patient = await _context.Patients.FirstOrDefaultAsync(x => x.Id == id);
-            return View(patient);
+
+
+            var addreses = await Task.Run(() => _context.Addresses.Select(x => new SelectViewModel { Id = x.Id, Name = x.Coutry +" "+  x.Region + " " + x.Locality + " " + x.Hous + " " + x.Flat.ToString() }));
+            var model = new PatientViewModel
+            { 
+                Id = patient.Id,
+                Name = patient.Name,
+                LastName = patient.LastName,
+                Sex = patient.Sex,
+                Passport = patient.Passport,
+                Addreses = addreses.ToList(),
+            };
+            return View(model);
+
+
         }
 
         // POST: PatientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Patient patient)
+        public async Task<IActionResult> Edit(PatientViewModel model)
         {
+            var patient = await _context.Patients.FirstOrDefaultAsync(x => x.Id == model.Id);
+
+            patient.AddressId = model.AddressId;
+            patient.Name = model.Name;
+            patient.LastName = model.LastName;
+            patient.Sex = model.Sex;
+            patient.Passport = model.Passport;
+            
             _context.Entry(patient).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 

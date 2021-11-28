@@ -1,4 +1,4 @@
-﻿@model VaccinationCampaignUI.Models.Patient;
+﻿@model VaccinationCampaignUI.ViewModels.PatientViewModel;
 
 <form asp-action="Edit" method="post">
     <label>Имя</label>
@@ -26,10 +26,8 @@
     <input type="text" name="passport" value="@Model.Passport" />
     <br />
 
-    <label>адресId</label>
-    <br />
-    <input type="number" name="addressId" value="@Model.AddressId" />
-    <br />
+    <select name="addressId" asp-items="@(new SelectList(Model.Addreses, "Id", "Name"))"></select>
+
 
     <input type="submit" value="Edit" />
 </form>
