@@ -29,16 +29,31 @@ namespace VaccinationCampaignUI.Controllers
             return View();
         }
         // GET: PatientController/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var addreses = await Task.Run(() => _context.Addresses.Select(x => new SelectViewModel { Id = x.Id, Name = x.Coutry + " " + x.Region + " " + x.Locality + " " + x.Hous + " " + x.Flat.ToString() }));
+            var model = new PatientViewModel
+            {
+                Addreses = addreses.ToList(),
+            };
+            return View(model);      
         }
 
         // POST: PatientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Patient patient)
+        public async Task<IActionResult> Create(PatientViewModel model)
         {
+
+            var patient = new Patient 
+            {
+                AddressId = model.AddressId,
+                Name = model.Name,
+                LastName = model.LastName,
+                Sex = model.Sex,
+                Passport = model.Passport
+            };    
+
             await _context.Patients.AddAsync(patient);
             await _context.SaveChangesAsync();
 

@@ -1,22 +1,21 @@
-﻿@model VaccinationCampaignUI.Models.Vaccination;
+﻿@model VaccinationCampaignUI.ViewModels.VaccinationViewModel;
 
 <form method="post">
-    <label>Название вакцыны</label>
+    <label>Название вакцины</label>
     <input type="text" name="NameVaccine" value="@Model.NameVaccine" />
     <br />
-    <label>Дата</label>
-    <input type="text" name="Date" value="@Model.Date" />
-    <br />
+    <label for="localdate">Дата и время: </label>
+    <input type="datetime-local" name="Date" value="" />
     <label>Номер дозы</label>
-    <input type="text" name="VaccineId" value="@Model.VaccineId" />
+    <select name="vaccineId" asp-items="@(new SelectList(Model.Vaccines, "Id", "Name"))"></select>
     <br />
     <label>Пациент</label>
-    <input type="text" name="Manufacturer" value="@Model.PatientId" />
+    <select name="patientId" asp-items="@(new SelectList(Model.Patients, "Id", "Name"))"></select>
     <br />
 
     <label>Мединститут</label>
-    <input type="text" name="Manufacturer" value="@Model.MedicalInsId" />
+    <select name="MedicalInsId" asp-items="@(new SelectList(Model.Institutions, "Id", "Name"))"></select>
     <br />
-    
+
     <input type="submit" asp-action="Edit" asp-controller="Vaccination" value="Edit" />
 </form>

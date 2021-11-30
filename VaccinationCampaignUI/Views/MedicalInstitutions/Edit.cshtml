@@ -1,14 +1,15 @@
-﻿@model VaccinationCampaignUI.Models.MedicalInstitution;
+﻿@model VaccinationCampaignUI.ViewModels.MedicalInstitutionViewModel;
+
 
 <form method="post">
-    <label>idболезни</label>
+    <label>Мед учреждение</label>
     <input type="text" name="NameMedInst" value="@Model.NameMedInst" />
     <br />
-    <label>Описание</label>
+    <label>Адрес</label>
     <input type="text" name="AdressMedInst" value="@Model.AdressMedInst" />
     <br />
-    <label>Доза</label>
-    <input type="text" name="AppealId" value="@Model.AppealId" />
+    <label>Обращение</label>
+    <select name="appealId" asp-items="@(new SelectList(Model.Appeal, "Id", "Name"))"></select>
     <br />
 
     <input type="submit" asp-action="Edit" asp-controller="MedicalInstitution" value="Edit" />

@@ -1,9 +1,9 @@
-﻿@model VaccinationCampaignUI.Models.Appeal;
+﻿@model VaccinationCampaignUI.ViewModels.AppealViewModel;
 
 <form method="post">
-    <label>id пициента</label>
+    <label>Пациент</label>
     <br />
-    <input type="text" name="PatientId" value="" />
+    <select name="patientId" asp-items="@(new SelectList(Model.Patient, "Id", "Name"))"></select>
     <br />
 
     <label>Описание</label>

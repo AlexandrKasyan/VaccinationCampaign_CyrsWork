@@ -1,0 +1,41 @@
+﻿@model VaccinationCampaignUI.ViewModels.CountAppealViewModel;
+
+@{
+    ViewData["Title"] = "AppealViewModel";
+}
+
+<h1>Число обращений</h1>
+
+
+<form method="get">
+
+    <select name="regionId" asp-items="@(new SelectList(Model.Regions, "Id", "Name" ))"></select>
+    <input asp-action="CountAppeals" asp-controller="Appeal" type="submit" value="Показать">
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Месяц
+            </th>
+            <th>
+                Количество
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Count)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Key)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

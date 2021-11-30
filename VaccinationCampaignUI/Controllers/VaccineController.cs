@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VaccinationCampaignUI.Data;
 using VaccinationCampaignUI.Models;
-
+using VaccinationCampaignUI.ViewModels;
 
 namespace VaccinationCampaignUI.Controllers
 {
@@ -26,15 +26,30 @@ namespace VaccinationCampaignUI.Controllers
             return View();
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var disease = await Task.Run(() => _context.Diseases.Select(x => new SelectViewModel { Id = x.Id, Name = x.NameDis + " " + x.Code}));
+           
+            var model = new VaccineViewModel
+            {
+                Diseases = disease.ToList()
+            };
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Vaccine vaccines)
+        public async Task<IActionResult> Create(VaccineViewModel model)
         {
+
+            var vaccines = new Vaccine
+            {
+                DescriptionVacc = model.DescriptionVacc,
+                Dose = model.Dose,
+                Manufacturer = model.Manufacturer,
+                DiseaseId = model.DiseaseId,
+            };
+
             await _context.Vaccines.AddAsync(vaccines);
             await _context.SaveChangesAsync();
 
@@ -44,13 +59,33 @@ namespace VaccinationCampaignUI.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var vaccine = await _context.Vaccines.FirstOrDefaultAsync(x => x.Id == id);
-            return View(vaccine);
+
+
+            var disease = await Task.Run(() => _context.Diseases.Select(x => new SelectViewModel { Id = x.Id, Name = x.NameDis + " " + x.Code }));
+            var model = new VaccineViewModel
+            {
+                Id = vaccine.Id,
+                DescriptionVacc = vaccine.DescriptionVacc,
+                Dose = vaccine.Dose,
+                Manufacturer = vaccine.Manufacturer,
+                Diseases = disease.ToList(),
+            };
+            return View(model);
+         
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Vaccine vaccine)
+        public async Task<IActionResult> Edit(VaccineViewModel model)
         {
+
+            var vaccine = await _context.Vaccines.FirstOrDefaultAsync(x => x.Id == model.Id);
+
+            vaccine.DescriptionVacc = model.DescriptionVacc;
+            vaccine.Dose = model.Dose;
+            vaccine.Manufacturer = model.Manufacturer;
+            vaccine.DiseaseId = model.DiseaseId;
+
             _context.Entry(vaccine).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
